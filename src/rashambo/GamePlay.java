@@ -1,5 +1,8 @@
 package rashambo;
 
+import java.util.Scanner;
+import java.util.Random;
+
 public class GamePlay
 {
    
@@ -13,8 +16,11 @@ public class GamePlay
    private boolean compWon = false;
    
    
-   public void whoWon(String userChoice, String compChoice)
+   public void whoWon()
    {
+      userWon = false;
+      compWon = false;
+      
       if (userChoice.equals("rock") && compChoice.equals("scissors"))
       {
          winner = "user";
@@ -30,9 +36,20 @@ public class GamePlay
          winner = "user";
          userWon = true;
       }
+      else if (userChoice.equals(compChoice))
+      {
+         winner = "tie";
+         compWon = false;
+         userWon = false;
+      }
       else
+      {
          winner = "computer";
-         compWon = true;     
+         compWon = true;
+      }
+      
+      incrementWinner();
+
    }
    
    public void incrementWinner()
@@ -41,49 +58,102 @@ public class GamePlay
       {
          userScore++;
       }
-      else
+      else if (compWon == true)
+      {
          compScore++;
+      }
+      
    }
 
    public String getWinner()
    {
       return winner;
    }
+   
+   public void setUserChoice(String userChoice)
+   {
+      this.userChoice = userChoice;
+   }
+   
+   
+   public int getUserScore()
+   {
+      return userScore;
+   }
+   
+   public void setCompChoice(String compChoice)
+   {
+      this.compChoice = compChoice;
+   }
+   
+   public String getCompChoice()
+   {
+      return compChoice;
+   }
+   
+   public int getCompScore()
+   {
+      return compScore;
+   }
+   
+   public String getUserChoice()
+   {
+      return userChoice;
+   }
+   
+   
+   
+   public void printScores()
+   {
+      System.out.println("SCORES: ");
+      System.out.println("User: " + getUserScore());
+      System.out.println("Computer: " + getCompScore());
+   }
+   
    public static void main(String[] args)
    {
       GamePlay myGame = new GamePlay();
-      myGame.whoWon("rock", "scissors");
-      System.out.println("from main " + myGame.getWinner());
-     // System.out.println(");
+      Scanner kbd = new Scanner(System.in);
+      boolean keepGoing = true;
+      String keepPlaying;
+      //Random compRandChoice = new Random();
+      
+      /*
+       * import java.util.Random;
+
+Random rand = new Random();
+
+int  n = rand.nextInt(50) + 1;
+       * 
+       
+       */
+      
+      while (keepGoing)
+      {
+         System.out.println("make a choice, rock, paper, scissors");
+         myGame.setUserChoice(kbd.nextLine());
+         
+         
+         myGame.setCompChoice("rock");
+
+         
+         myGame.whoWon();
+         
+         System.out.println("The winner is: " + myGame.getWinner());
+         myGame.printScores();
+         
+         
+         
+         
+         
+         //  TESTING TO KEEP GAME GOING
+         System.out.println("Play again? " );
+         keepPlaying = kbd.nextLine();
+         keepGoing = Boolean.parseBoolean(keepPlaying);
+         
+      }
+      
       
    }
 }
-   /*
-    * String or Integer [] choice = rock, paper, scissor
-
-int userScore = 0;
-
-int compScore = 0;
-string whoWins(userChoice, compChoice)
-
-if user = paper and computer = rock
-
-User wins
-
-If user = rock and computer = scissors
-
-user wins
-
-if user = scissors and computer = paper
-
-user wins
-
-Return User
-
- 
-
-All else computer wins
-
-Return computer
-    */
 
