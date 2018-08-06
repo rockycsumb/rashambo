@@ -2,11 +2,13 @@ package rashambo;
 
 import java.util.Scanner;
 import java.util.Random;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class GamePlay
 {
    
-   private String [] choice = {"rock", "paper", "scissor"};
+   public static String [] choice = {"rock", "paper", "scissors"};
    private int userScore = 0;
    private int compScore = 0;
    private String userChoice;
@@ -14,6 +16,9 @@ public class GamePlay
    private String winner;
    private boolean userWon = false;
    private boolean compWon = false;
+   GuiRashambo setComputerChoice;
+   static ImageIcon[] compImages = new ImageIcon[3];
+   
    
    
    public void whoWon()
@@ -23,28 +28,28 @@ public class GamePlay
       
       if (userChoice.equals("rock") && compChoice.equals("scissors"))
       {
-         winner = "user";
+         winner = "YOU WIN";
          userWon = true;
       }
       else if (userChoice.equals("scissors") && compChoice.equals("paper"))
       {
-         winner = "user";
+         winner = "YOU WIN";
          userWon = true;
       }
       else if (userChoice.equals("paper") && compChoice.equals("rock"))
       {
-         winner = "user";
+         winner = "YOU WIN";
          userWon = true;
       }
       else if (userChoice.equals(compChoice))
       {
-         winner = "tie";
+         winner = "ITS A TIE!";
          compWon = false;
          userWon = false;
       }
       else
       {
-         winner = "computer";
+         winner = "YOU LOSE";
          compWon = true;
       }
       
@@ -81,6 +86,15 @@ public class GamePlay
       return userScore;
    }
    
+   
+   public static void loadComputerChoices()
+   {
+      compImages[0] = new ImageIcon("images/compRock.png");
+      compImages[1] = new ImageIcon("images/compPaper.png");
+      compImages[2] = new ImageIcon("images/compScissors.png");
+   }
+
+   
    public void setCompChoice(String compChoice)
    {
       this.compChoice = compChoice;
@@ -110,50 +124,21 @@ public class GamePlay
       System.out.println("Computer: " + getCompScore());
    }
    
-   public static void main(String[] args)
+   public static String computerChoice()
    {
-      GamePlay myGame = new GamePlay();
-      Scanner kbd = new Scanner(System.in);
-      boolean keepGoing = true;
-      String keepPlaying;
-      //Random compRandChoice = new Random();
+      Random rand = new Random();
+      int number = rand.nextInt(3) + 0;
       
-      /*
-       * import java.util.Random;
-
-Random rand = new Random();
-
-int  n = rand.nextInt(50) + 1;
-       * 
-       
-       */
-      
-      while (keepGoing)
-      {
-         System.out.println("make a choice, rock, paper, scissors");
-         myGame.setUserChoice(kbd.nextLine());
-         
-         
-         myGame.setCompChoice("rock");
-
-         
-         myGame.whoWon();
-         
-         System.out.println("The winner is: " + myGame.getWinner());
-         myGame.printScores();
-         
-         
-         
-         
-         
-         //  TESTING TO KEEP GAME GOING
-         System.out.println("Play again? " );
-         keepPlaying = kbd.nextLine();
-         keepGoing = Boolean.parseBoolean(keepPlaying);
-         
-      }
+      GamePlay.loadComputerChoices();
       
       
+      
+      System.out.println("" + number);
+      GuiRashambo.playAreaRight.setIcon(compImages[number]);
+      
+      return choice[number];
    }
+   
+   
 }
 
