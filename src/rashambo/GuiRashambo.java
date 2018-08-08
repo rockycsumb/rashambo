@@ -13,15 +13,19 @@ import java.io.File;
 
 public class GuiRashambo extends JFrame
 {
-   //public static String youWin = "You win";
+
+   // ATTRIBUTES
    static JLabel whoWinsLabel;
    static JLabel playAreaRight;
    static JLabel compScoreLabel;
    static JLabel userScoreLabel;
+   static JLabel titleColumnLabel;
    static ButtonListeners userButtons = new ButtonListeners();
    public Font whoWinsFont = new Font("Arial", Font.BOLD, 32);
    public Font scoreFont = new Font("Arial", Font.BOLD, 24);
-   // Make constructor
+   public static ImageIcon titlePic;
+   
+   // DEFAULT CONSTRUCTOR
    GuiRashambo()
    {
       super("Rashambo"); 
@@ -31,10 +35,10 @@ public class GuiRashambo extends JFrame
       setLayout(new GridLayout(3,1));
       
       
-      // TITLE
+      // TITLE AREA OF GUI
       JPanel titleColumnPanel = new JPanel();
-      JLabel titleColumnLabel = new JLabel();    
-      ImageIcon titlePic = new ImageIcon("images/title.png");
+      titleColumnLabel = new JLabel();    
+      titlePic = new ImageIcon("images/blankTitle.png");
       titleColumnLabel.setIcon(titlePic);
       titleColumnPanel.add(titleColumnLabel);
       add(titleColumnPanel);
@@ -42,10 +46,8 @@ public class GuiRashambo extends JFrame
       
       
       // PLAY AREA COLUMN
-      
       JPanel playAreaColumnPanel = new JPanel();
       playAreaColumnPanel.setLayout(new GridLayout(1,2));
-      
       
       
       // PLAY AREA USER AREA
@@ -53,7 +55,6 @@ public class GuiRashambo extends JFrame
       userButtonPanel.setLayout(new GridLayout(3,1));
       
       JButton userRockButton = new JButton();
-      //userRockButton.setBorderPainted(false);
       ImageIcon userRockIcon = new ImageIcon("images/userRock.png");
       userRockButton.setIcon(userRockIcon);
       userRockButton.setActionCommand("rock");
@@ -89,7 +90,6 @@ public class GuiRashambo extends JFrame
       
       
       // SCORE AREA
-      
       // YOU WIN OR LOSE AREA
       JPanel scoreColumnPanel = new JPanel();
       scoreColumnPanel.setLayout(new GridLayout(2,1));
@@ -102,6 +102,7 @@ public class GuiRashambo extends JFrame
       whoWinsLabel.setIcon(scoreColumnImageIcon);
       
       scoreColumnPanel.add(whoWinsLabel);
+      
       
       // USER AND COMP SCORE AREA
       
@@ -129,27 +130,5 @@ public class GuiRashambo extends JFrame
       scoreColumnPanel.add(userCompPanel);
      
       add(scoreColumnPanel);
-   }
-   
-   
-   
-   
-   // set background image
-   
-   
-   // panel for user buttons
-   
-   // panel for computer display choice
-   
-   
-   // make buttons
-   // selection for user
-   // play
-   
-   // set actionListener into private classes slide 90-94
-   
-   // update score
-   
-   
-
+   }   
 }

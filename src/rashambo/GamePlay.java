@@ -19,8 +19,7 @@ public class GamePlay
    GuiRashambo setComputerChoice;
    static ImageIcon[] compImages = new ImageIcon[3];
    
-   
-   
+   // WHO WON METHOD
    public void whoWon()
    {
       userWon = false;
@@ -52,11 +51,10 @@ public class GamePlay
          winner = "YOU LOSE";
          compWon = true;
       }
-      
       incrementWinner();
-
    }
    
+   //INCREMENT WINNER'S SCORE
    public void incrementWinner()
    {
       if (userWon == true)
@@ -69,24 +67,26 @@ public class GamePlay
       }
       
    }
-
+   
+   //WINNER ACCESSOR
    public String getWinner()
    {
       return winner;
    }
    
+   //SETTING USER'S CHOICE
    public void setUserChoice(String userChoice)
    {
       this.userChoice = userChoice;
    }
    
-   
+   // USERS SCORE ACCESSOR
    public int getUserScore()
    {
       return userScore;
    }
    
-   
+   //LOAD COMPUTER IMAGES
    public static void loadComputerChoices()
    {
       compImages[0] = new ImageIcon("images/compRock.png");
@@ -94,29 +94,31 @@ public class GamePlay
       compImages[2] = new ImageIcon("images/compScissors.png");
    }
 
-   
+   //COMPUTER CHOICE MUTATOR
    public void setCompChoice(String compChoice)
    {
       this.compChoice = compChoice;
    }
    
+   //COMPUTER CHOICE ACCESSOR
    public String getCompChoice()
    {
       return compChoice;
    }
    
+   //COMPUTER SCORE ACCESSOR
    public int getCompScore()
    {
       return compScore;
    }
    
+   //USER CHOICE ACCESSOR
    public String getUserChoice()
    {
       return userChoice;
    }
    
-   
-   
+   //PRINT SCORES ** WAS USED FOR TESTING
    public void printScores()
    {
       System.out.println("SCORES: ");
@@ -124,6 +126,7 @@ public class GamePlay
       System.out.println("Computer: " + getCompScore());
    }
    
+   //SET COMPUTER'S CHOICE
    public static String computerChoice()
    {
       Random rand = new Random();
@@ -131,14 +134,10 @@ public class GamePlay
       
       GamePlay.loadComputerChoices();
       
-      
-      
-      System.out.println("" + number);
+      //System.out.println("" + number);
       GuiRashambo.playAreaRight.setIcon(compImages[number]);
       
       return choice[number];
    }
-   
-   
 }
 
